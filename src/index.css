@@ -1,13 +1,237 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-size: 14px;
+  font-family: Tahoma, Arial;
+}
+/****************************************************************************************/
+#login_form {
+  border: 2px solid lightgray;
+  border-radius: 7px;
+  width: 50%;
+  background-color: #BDE0FF;
+  margin: 0% auto;
+  padding: 25px 0px;
+}
+
+#signup_form {
+  border: 2px solid lightgray;
+  border-radius: 7px;
+  width: 50%;
+  background-color: #BDE0FF;
+  margin: 0% auto;
+  padding: 25px 0px;
+  padding-bottom: 17px;
+}
+
+#login_back{
+  float: left;
+}
+
+#login_form input, #login_form button {
+  padding: 10px 2px;
+  margin: 10px;
+  width: 50%;
+}
+
+#login_form button {
+  width: 75px;
+  border-radius: 4px;
+  background-color: lightgray;
+}
+
+#signup_form input, #signup_form button {
+  padding: 10px 2px;
+  margin: 10px;
+  width: 50%;
+}
+
+#signup_form button {
+  width: 75px;
+  border-radius: 4px;
+  background-color: lightgray;
+}
+
+#login_main {
+  height: 100%;
+  text-align: center;
+}
+
+#end_login {
+  padding: 4.1%;
+}
+
+#end_signup {
+  padding: 0%;
+}
+
+#add_form{
+  border: 2px solid lightgray;
+  border-radius: 7px;
+  width: 50%;
+  background-color: #BDE0FF;
+  margin: 0% auto;
+  padding: 25px 0px;
+}
+
+#addform_main{
+  height: 100%;
+  text-align: center;
+}
+
+#end_add_form{
+  padding: 0.9%;
+}
+#add_form input, #add_form button {
+  padding: 10px 2px;
+  margin: 10px;
+  width: 50%;
+}
+/****************************************************************************************/
+#dashboard_content {
+  text-align: center;
+}
+.float-left{
+  /* width: 500px;
+  height: 500px; */
+  float: left;
+}
+
+
+/****************************************************************************************/
+#logout{
+  text-align: center;
+}
+#logout button{
+  margin: 10px;
+}
+#end_logout{
+  padding: 13.2%;
+}
+
+h1{
+  text-align: center;
+}
+/****************************************************************************************/
+#chart1_container, #chart2_container, #chart3_container {
+  float: right;
+  width: 500px;
+  height: 500px;
+}
+
+/****************************************************************************************/
+nav {
+  width: 100%;
+  background-color: #4d5791;
+  height: 44px;
+  padding: 0px 40px;
+}
+
+.right-aligned {
+  /* display: inline-block; */
+  float: right;
+}
+
+nav ul,
+nav ul li {
+  margin: 0;
+  padding: 0 ;
+  list-style: none;
+}
+
+nav ul li a {
+  padding: 0px 20px;
+  line-height: 44px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #ffffff;
+  margin: 0;
+  float: left;
+}
+
+nav ul li a:hover  {
+  background-color: white;
+  color: #4d5791;
+}
+
+div.hero {
+  height: 350px;
+  background-color: #b4c6f0;
+  background-image: url('./bg.png');
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  padding-top: 40px;
+}
+
+div.hero h1,
+div.hero h2 {
+  text-align: center;
+  margin: 0;
+}
+
+div.hero h1 {
+  color: #fff;
+  font-size: 4.2em;
+  margin-bottom: 20px;
+}
+
+div.hero h2 {
+  color: #4d5791;
+}
+
+main {
+  padding: 40px;
+  width: 100%;
+}
+
+.page-area {
+  max-width: 768px;
+  display: inline-block;
+}
+/* 
+footer {
+  height: 6.5%;
+  background-color: #b4c6f0;
+  padding: 40px;
+  position: fixed;
+  width: 98.8%;
+  bottom: 0;
+} */
+
+footer {
+  height: 5%;
+  background-color: #b4c6f0;
+  padding: 40px;
+}
+
+.skip {
+  display: block;
+  line-height: 44px;
+  padding: 0 20px;
+  margin-top: -44px;
+}
+
+.skip:focus {
+  margin-top: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+main article {
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+  text-align: justify;
+  margin: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  main article {
+      margin: 10px;
+  }
 }
