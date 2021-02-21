@@ -9,7 +9,10 @@ import LoginPage from './LoginPage/LoginPage';
 import LogoutPage from './LogoutPage/LogoutPage';
 import Menu from './Menu/Menu';
 import AddForm from './Dashboard/AddForm'
+import UpdateForm from './Dashboard/UpdateForm'
+import BudgetsList from './Dashboard/BudgetsList'
 import HomepageMenu from './Menu/HomepageMenu'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,6 +39,12 @@ function App() {
           </Route>
           <Route path="/add">
             <AddForm/>
+          </Route>
+          <Route path="/update">
+            <UpdateForm/>
+          </Route>
+          <Route path="/budgets">
+            <BudgetsList/>
           </Route>
           <Route path="/">
             <HomepageMenu/>

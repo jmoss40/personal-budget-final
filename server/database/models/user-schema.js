@@ -21,17 +21,10 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    budgets: {
-        unique: false,
-        type: Array,
-        required: false,
-        default:[{
-            id: {type: Number, unique: true, required: false},
-            title: {type: String, trim: false, required: false},
-            budget: {type: Number, default: 0, required: false},
-            used: {type: Number, default: 0, required: false}
-        }]
-    }
-}, { minimize: false, collection: 'users'});
+    budgets: []
+}, { 
+    minimize: false,
+    collection: 'users'
+});
 
 module.exports = mongoose.model('user', userSchema)

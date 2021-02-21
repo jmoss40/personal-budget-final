@@ -11,11 +11,11 @@ class LoginPage extends Component{
         this.state = {
             email: "",
             password: "",
+            // rememberMe: false,
+            redirect: false
         }
-
         this.changeHandler = this.changeHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
-        this.getDashboard = this.getDashboard.bind(this);
     }
 
     changeHandler = (e) => {
@@ -24,50 +24,49 @@ class LoginPage extends Component{
 
     submitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:4200/api/login', this.state).then((res)=> {
-            console.log(res);
+        const {email, password} = this.state;
+        var credentials = {email, password}
+        axios.post('http://localhost:4200/api/login', credentials).then((res)=> {
             if(res && res.data && res.data.success) {
                 const token = res.data.token;
                 localStorage.setItem('jwt', token);
-                console.log("Successfully signed in!");
-                this.getDashboard();
+                localStorage.setItem("email", email);
+
+                toast.info("Sign-in successful. Welcome!");
+                setTimeout(()=>{this.setState({redirect:true})}, 3000);
             }else{
                 toast.info("Email or password is incorrect.");
             }
         });
     }
-    
-    getDashboard(){
-        const token = localStorage.getItem('jwt');
-        axios.get('http://localhost:4200/api/dashboard', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(res=>{
-            if(res && res.data && res.data.success){
-                toast.info("Sign-in successful. Welcome!");
-                console.log("Redirecting to dashboard...");
-                <Redirect push to="/dashboard"/> //REDIRECTING DOESNT WORK
-            }
-        });
-    }
 
     render(){
-        const {email, password} = this.state;
-        return (
-            <main id="login_main">
-                <ToastContainer/>
-                <p id="login_back"><Link to="/">Back to home</Link></p><br/><br/>
-                <h1>Login</h1>
-                <form id="login_form" onSubmit={this.submitHandler}>
-                    <input type="email" name="email" placeholder="Email" required="required" value={email} onChange={this.changeHandler}/> <br/>
-                    <input type="password" name="password" placeholder="Password" required="required" value={password} onChange={this.changeHandler}/><br/>
-                    <button type='submit'>Login</button>
-                    <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-                </form>
-                <div id="end_login"></div>
-            </main>
-        );
+        const {email, password, redirect} = this.state;
+        // const {email, password, redirect} = this.state;
+        if(redirect){
+            return <Redirect to="/dashboard"/>
+        }else{
+            return (
+                <main id="form_main">
+                    <ToastContainer autoClose={3000}/>
+                    <p id="back"><Link to="/">Back to home</Link></p><br/><br/>
+                    <h1>Login</h1>
+                    <form id="login_form">
+                        <input type="email" name="email" placeholder="Email" required="required" value={email} onChange={this.changeHandler}/> <br/>
+                        <input type="password" name="password" placeholder="Password" required="required" value={password} onChange={this.changeHandler}/><br/>
+                        
+                        {/* <div id="login_checkbox"> */}
+                        {/* <label>Keep me signed in</label> */}
+                        {/* <input type='checkbox' name="rememberMe" value={rememberMe} onChange={this.changeHandler}/><br/> */}
+                        {/* </div> */}
+
+                        <br/>
+                        <button type="button" onClick={this.submitHandler}>Login</button> <br/>
+                        <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+                    </form>
+                </main>
+            );
+        }
     }
 }
 export default LoginPage;

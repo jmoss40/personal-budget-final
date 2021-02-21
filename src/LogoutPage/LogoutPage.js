@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import {Redirect } from 'react-router-dom';
 
 class LogoutPage extends Component{
     constructor(props){
         super(props);
+        this.state = { redirect: false }
     }
+
+    componentDidMount(){
+        setTimeout(() => { this.setState({redirect: true}); }, 2000);
+    }
+
     render(){
         const token = localStorage.getItem('jwt');
-        if(token){
+        if(token || !this.state.redirect){
             localStorage.removeItem('jwt');
-            setTimeout(() => {
-                console.log("Attempting to redirect...");
-                <Redirect to='/'/>
-                console.log("Did it work?");
-            }, 1000);
+            localStorage.removeItem('email');
             return (
                 <main id="logout">
                     <h1>Goodbye!</h1>
-                    <p onLoad={this.redirect}>You are now logged out.</p>
-                    <button><Link to="/">Homepage</Link></button>
-                    <button><Link to="/login">Login</Link></button>
+                    <p>You are now logged out. Redirecting...</p>
                     <div id="end_logout"></div>
                 </main>
             );
         }else{
-            return (<Redirect to='/'/>);
+            return <Redirect to='/'/>
         }
     }
 }
